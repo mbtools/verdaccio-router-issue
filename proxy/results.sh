@@ -12,6 +12,8 @@ echo "###"
 
 cat debug.log
 
+exit # <<<
+
 echo "###"
 echo "### STORAGE ###"
 echo "###"
@@ -19,8 +21,6 @@ echo "###"
 # tree -s ./storage/ 
 # ls -lR ./storage/
 tree ./storage/ 
-
-exit # <<<
 
 # More detailed information about the packages
 
