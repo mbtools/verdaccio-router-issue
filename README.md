@@ -5,3 +5,4 @@ A minimized test case for an issue setting up Verdaccio as a proxy in GitHub Act
 ## License
 
 MIT
+# verdaccio-router-issue
