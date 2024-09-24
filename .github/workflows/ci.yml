@@ -3,7 +3,7 @@ name: CI
 env:
   NODE_VERSION: 20.x
   VERDACCIO_VERSION: latest
-  VERDACCIO_DEBUG: "express:*,verdaccio:*"
+  VERDACCIO_DEBUG: '"express:*,verdaccio:*"'
   PROXY: http://127.0.0.1:4873
   CIUSER: ci
   CIEMAIL: ci@verdaccio.org
