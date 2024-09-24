@@ -1,13 +1,18 @@
 storage: ./storage
+
 auth:
   htpasswd:
     file: ./htpasswd
+    algorithm: bcrypt
+
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
+
 packages:
   '**':
     access: $all
     publish: $authenticated
     proxy: npmjs
+
 log: { type: file, path: proxy.log, level: http }
