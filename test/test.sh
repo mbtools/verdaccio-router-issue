@@ -3,8 +3,8 @@
 PROXY=$1
 
 echo "### Test 1: Get regular package"
+echo
 
-npm cache clean --force > /dev/null
 rm -fR ../proxy/storage/data
 
 URL=$PROXY/lodash
@@ -19,11 +19,13 @@ URL=$PROXY/lodash/-/lodash-4.17.21.tgz
 echo $URL
 curl -s -o /dev/null -w "%{http_code} %{errormsg}: size %{size_download} bytes" $URL
 echo
+echo
 tree ../proxy/storage
+echo
 
 echo "### Test 2: Get scoped package"
+echo
 
-npm cache clean --force > /dev/null
 rm -fR ../proxy/storage/data
 
 URL=$PROXY/@types/lodash
@@ -38,11 +40,13 @@ URL=$PROXY/@types/lodash/-/lodash-4.17.9.tgz
 echo $URL
 curl -s -o /dev/null -w "%{http_code} %{errormsg}: size %{size_download} bytes" $URL
 echo
+echo
 tree ../proxy/storage
+echo
 
 echo "### Test 3: Get scoped package escaped 'slash'"
+echo
 
-npm cache clean --force > /dev/null
 rm -fR ../proxy/storage/data
 
 URL=$PROXY/@types%2Flodash
@@ -57,11 +61,13 @@ URL=$PROXY/@types%2Flodash/-/lodash-4.17.9.tgz
 echo $URL
 curl -s -o /dev/null -w "%{http_code} %{errormsg}: size %{size_download} bytes" $URL
 echo
+echo
 tree ../proxy/storage
+echo
 
 echo "### Test 4: Get scoped package escaped 'at'"
+echo
 
-npm cache clean --force > /dev/null
 rm -fR ../proxy/storage/data
 
 URL=$PROXY/%40types/lodash
@@ -76,11 +82,13 @@ URL=$PROXY/%40types/lodash/-/lodash-4.17.9.tgz
 echo $URL
 curl -s -o /dev/null -w "%{http_code} %{errormsg}: size %{size_download} bytes" $URL
 echo
+echo
 tree ../proxy/storage
+echo
 
 echo "### Test 5: Get scoped package escaped 'at' and 'slash'"
+echo
 
-npm cache clean --force > /dev/null
 rm -fR ../proxy/storage/data
 
 URL=$PROXY/%40types%2Flodash
@@ -95,4 +103,6 @@ URL=$PROXY/%40types%2Flodash/-/lodash-4.17.9.tgz
 echo $URL
 curl -s -o /dev/null -w "%{http_code} %{errormsg}: size %{size_download} bytes" $URL
 echo
+echo
 tree ../proxy/storage
+echo
