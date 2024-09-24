@@ -1,12 +1,6 @@
 #!/bin/bash
 
 echo "###"
-echo "### TESTS ###"
-echo "###"
-
-cat test.log
-
-echo "###"
 echo "### LOG ###"
 echo "###"
 
@@ -17,12 +11,6 @@ echo "### DEBUG ###"
 echo "###"
 
 cat debug.log
-
-echo "###"
-echo "### ERRORS ###"
-echo "###"
-
-cat error.log
 
 echo "###"
 echo "### STORAGE ###"

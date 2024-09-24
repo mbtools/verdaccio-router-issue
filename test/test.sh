@@ -4,6 +4,9 @@ PROXY=$1
 
 echo ### Test 1: Get regular package
 
+npm cache clean --force
+rm -fR ../proxy/storage/data
+
 URL=$PROXY/lodash
 echo $URL
 curl -s -o /dev/null -w "%{http_code}" $URL
@@ -18,6 +21,9 @@ curl -s -o /dev/null -w "%{http_code}" $URL
 echo
 
 echo ### Test 2: Get scoped package
+
+npm cache clean --force
+rm -fR ../proxy/storage/data
 
 URL=$PROXY/@types/lodash
 echo $URL
@@ -34,6 +40,9 @@ echo
 
 echo ### Test 3: Get scoped package escaped "slash"
 
+npm cache clean --force
+rm -fR ../proxy/storage/data
+
 URL=$PROXY/@types%2Flodash
 echo $URL
 curl -s -o /dev/null -w "%{http_code}" $URL
@@ -49,11 +58,14 @@ echo
 
 echo ### Test 4: Get scoped package escaped "at"
 
+npm cache clean --force
+rm -fR ../proxy/storage/data
+
 URL=$PROXY/%40types/lodash
 echo $URL
 curl -s -o /dev/null -w "%{http_code}" $URL
 echo
-URL=$PROXY/%40types%/lodash/4.17.9
+URL=$PROXY/%40types/lodash/4.17.9
 echo $URL
 curl -s -o /dev/null -w "%{http_code}" $URL
 echo
@@ -63,6 +75,9 @@ curl -s -o /dev/null -w "%{http_code}" $URL
 echo
 
 echo ### Test 5: Get scoped package escaped "at" and "slash"
+
+npm cache clean --force
+rm -fR ../proxy/storage/data
 
 URL=$PROXY/%40types%2Flodash
 echo $URL
