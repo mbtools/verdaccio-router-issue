@@ -1,0 +1,50 @@
+name: CI
+
+env:
+  NODE_VERSION: 20.x
+  VERDACCIO_VERSION: latest
+  VERDACCIO_DEBUG: "express:*,verdaccio:*"
+  PROXY: http://127.0.0.1:4873
+  CIUSER: ci
+  CIEMAIL: ci@verdaccio.org
+  CIPASS: dummycipassword
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    branches:
+      - main
+
+jobs:
+  integration:
+    name: Router Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        #with:
+        #  fetch-depth: 0
+      - name: Start Verdaccio
+        shell: bash
+        working-directory: ./proxy
+        run: ./proxy.sh ${{env.PROXY}} ${{env.VERDACCIO_VERSION}} ${{env.VERDACCIO_DEBUG}}
+      - name: Authenticate with Verdaccio
+        shell: bash
+        run: npx npm-automated-login-totp -u ${{env.CIUSER}} -p ${{env.CIPASS}} -e ${{env.CIEMAIL}} -r ${{env.PROXY}}
+      - name: Run Tests
+        continue-on-error: true
+        shell: bash
+        working-directory: ./test
+        run: ./test.sh
+      - name: Get Results
+        shell: bash
+        working-directory: ./proxy
+        run: ./results.sh
