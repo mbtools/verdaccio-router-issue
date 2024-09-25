@@ -44,7 +44,7 @@ jobs:
         shell: bash
         working-directory: ./test
         run: ./test.sh ${{env.PROXY}}
-      - name: Get Results
+      - name: Show Logs
         shell: bash
         working-directory: ./proxy
         run: ./results.sh

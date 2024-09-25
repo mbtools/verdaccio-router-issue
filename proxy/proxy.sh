@@ -13,6 +13,6 @@ rm -f debug.log
 nohup env DEBUG=$DEBUG npx verdaccio@$VERSION --config ./config.yml --listen $PROXY 2> debug.log &
 
 # Wait for the server to begin listening for connections
-( tail -F -n10 proxy.log & ) | fgrep -q $PROXY
+( tail -F -n5 proxy.log & ) | fgrep -q $PROXY
 
 cat proxy.log
