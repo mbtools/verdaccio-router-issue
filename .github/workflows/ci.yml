@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
         shell: bash
         working-directory: ./test
-        run: ./test.sh ${{env.PROXY}}
+        run: ./test.sh ${{env.PROXY}} ../proxy/storage/data
       - name: Show Logs
         shell: bash
         working-directory: ./proxy

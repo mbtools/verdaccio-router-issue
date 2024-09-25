@@ -1,11 +1,12 @@
 #!/bin/bash
 
 PROXY=$1
+STORE=$2
 
 echo "### Test 1: Get regular package"
 echo
 
-rm -fR ../proxy/storage/data
+rm -fR $STORE
 
 URL=$PROXY/lodash
 echo $URL
@@ -20,13 +21,13 @@ echo $URL
 curl -s -o /dev/null -w "%{http_code}: size %{size_download} bytes" $URL
 echo
 echo
-tree ../proxy/storage
+tree $STORE
 echo
 
 echo "### Test 2: Get scoped package"
 echo
 
-rm -fR ../proxy/storage/data
+rm -fR $STORE
 
 URL=$PROXY/@types/lodash
 echo $URL
@@ -41,13 +42,13 @@ echo $URL
 curl -s -o /dev/null -w "%{http_code}: size %{size_download} bytes" $URL
 echo
 echo
-tree ../proxy/storage
+tree $STORE
 echo
 
 echo "### Test 3: Get scoped package escaped 'slash'"
 echo
 
-rm -fR ../proxy/storage/data
+rm -fR $STORE
 
 URL=$PROXY/@types%2Flodash
 echo $URL
@@ -62,13 +63,13 @@ echo $URL
 curl -s -o /dev/null -w "%{http_code}: size %{size_download} bytes" $URL
 echo
 echo
-tree ../proxy/storage
+tree $STORE
 echo
 
 echo "### Test 4: Get scoped package escaped 'at'"
 echo
 
-rm -fR ../proxy/storage/data
+rm -fR $STORE
 
 URL=$PROXY/%40types/lodash
 echo $URL
@@ -83,13 +84,13 @@ echo $URL
 curl -s -o /dev/null -w "%{http_code}: size %{size_download} bytes" $URL
 echo
 echo
-tree ../proxy/storage
+tree $STORE
 echo
 
 echo "### Test 5: Get scoped package escaped 'at' and 'slash'"
 echo
 
-rm -fR ../proxy/storage/data
+rm -fR $STORE
 
 URL=$PROXY/%40types%2Flodash
 echo $URL
@@ -104,5 +105,5 @@ echo $URL
 curl -s -o /dev/null -w "%{http_code}: size %{size_download} bytes" $URL
 echo
 echo
-tree ../proxy/storage
+tree $STORE
 echo
